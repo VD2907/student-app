@@ -49,10 +49,10 @@ apt install docker.io -y
 apt install mysql-client -y
 ```
 ### 🧩 Step 2: Clone the GitHub Repository
-# Clone your project from GitHub
+Clone your project from GitHub
 ```
 git clone <GitHub_Repository_Link>
 ```
 
-# Example:
-# git clone https://github.com/username/student-registration.git
+Example:
+git clone https://github.com/username/student-registration.git
