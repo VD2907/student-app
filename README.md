@@ -1,6 +1,6 @@
-# 🧾 Student Registration Website – Deployment Documentation
+# Student Registration Website – Deployment Documentation
 
-## 📘 Application Information
+## Application Information
 
 ### What is the App?
 - This is a **Student Registration Website**.  
@@ -8,31 +8,31 @@
 
 ---
 
-## ⚙️ How to Build Each Component
+## How to Build Each Component
 
-### 🖥️ Frontend
+### Frontend
 - Node.js and npm must be installed.
 
-### 🧠 Backend
+### Backend
 - Java Development Kit (**JDK 17** or higher) must be installed.  
 - Maven must be installed.
 
-### 🗄️ Database
+### Database
 - Install **MariaDB**.
 
 ---
 
-## 🔧 Pre-Requirements
+## Pre-Requirements
 
 Before starting, make sure:
-- ✅ **RDS** (Relational Database Service) is created.  
-- ✅ **EC2 Instance** is launched.  
-- ✅ **Docker** is installed.  
-- ✅ **MySQL Client** is installed.
+- **RDS** (Relational Database Service) is created.  
+- **EC2 Instance** is launched.  
+- **Docker** is installed.  
+- **MySQL Client** is installed.
 
 ---
 
-## 🪜 Steps and Commands
+## Steps and Commands
 
 ### Step 1: Prepare the EC2 Instance
 ```bash
@@ -50,7 +50,7 @@ apt install mysql-client -y
 ```
 ---
 
-## 🧩 Step 2: Clone the GitHub Repository
+## Step 2: Clone the GitHub Repository
 Clone your project from GitHub
 ```
 git clone <GitHub_Repository_Link>
@@ -61,13 +61,52 @@ git clone https://github.com/username/student-registration.git
 
 ---
 
-# ⚙️ Backend Setup
-## 🧩 Step 3: Navigate to Backend Directory
+# Database Setup 
+## Step 1: Connect to your RDS
+
+Use the MySQL client on EC2 or your local system:
+
+```
+mysql -h <rds-endpoint> -u <username> -p
+```
+
+Example:
+mysql -h student-db.cle2abcd123.ap-south-1.rds.amazonaws.com -u admin -p
+
+## Step 2: Create a Database
+
+### If your application.properties has this line:
+
+```
+spring.datasource.url=jdbc:mysql://<rds-endpoint>:3306/studentdb
+```
+
+Then create a database named studentdb:
+
+```
+CREATE DATABASE studentdb;
+GRANT ALL PRIVILEGES ON springbackend.* TO 'username'@'localhost' IDENTIFIED BY 'your_password';
+
+```
+
+## Step 3: Verify the Database
+```
+SHOW DATABASES;
+```
+You should see studentdb in the list.
+
+## Step 4: Exit MariaDB
+```
+EXIT;
+```
+---
+# Backend Setup
+## Step 1: Navigate to Backend Directory
 ```
 cd <GitHub_Repository_Name>/backend
 ```
 
-## 🧩 Step 4: Configure application.properties
+## Step 2: Configure application.properties
 ```
 nano application.properties
 ```
@@ -86,10 +125,10 @@ spring.datasource.username=admin
 spring.datasource.password=yourpassword
 ```
 
-Save and exit using CTRL + S, then ENTER, then CTRL + X.
+### Save and exit using CTRL + S, then ENTER, then CTRL + X.
 ---
 
-## 🧩 Step 5: Create Dockerfile for Backend
+## Step 3: Create Dockerfile for Backend
 nano Dockerfile
 
 
@@ -110,27 +149,27 @@ EXPOSE 8080
 CMD ["java", "-jar", "student-registration-backend-0.0.1-SNAPSHOT.jar"]
 ```
 
-## 🧩 Step 6: Build Backend Docker Image
+## Step 4: Build Backend Docker Image
 ```
 docker build -t backend:v1 .
 ```
 
-## 🧩 Step 7: Run Backend Docker Container
+## Step 5: Run Backend Docker Container
 ```
 docker run -d -p 8080:8080 backend:v1
 ```
 
-## 🧩 Step 8: Check Running Containers
+## Step 6: Check Running Containers
 ```
 docker ps
 ```
 
-# 🎨 Frontend Setup
-## 🧩 Step 9: Navigate to Frontend Directory
+# Frontend Setup
+## Step 1: Navigate to Frontend Directory
 ```
 cd <GitHub_Repository_Name>/frontend
 ```
-## 🧩 Step 10: Create Dockerfile for Frontend
+## Step 2: Create Dockerfile for Frontend
 ```
 nano Dockerfile
 ```
@@ -151,23 +190,23 @@ EXPOSE 80
 CMD ["httpd", "-D", "FOREGROUND"]
 ```
 
-## 🧩 Step 11: Build Frontend Docker Image
+## Step 3: Build Frontend Docker Image
 ```
 docker build -t frontend:v1 .
 ```
 
-## 🧩 Step 12: Run Frontend Docker Container
+## Step 4: Run Frontend Docker Container
 ```
 docker run -d -p 80:80 frontend:v1
 ```
 
-## 🧩 Step 13: Check Running Containers
+## Step 5: Check Running Containers
 ```
 docker ps
 ```
 ---
 
-## ✅ Verification and Testing
+## Verification and Testing
 
 #### Access website:
 Open your browser and go to
