@@ -192,7 +192,7 @@ CMD ["httpd", "-D", "FOREGROUND"]
 ## step 3: Build the React Application for Production
 Update backend URL in .env file
 ```
-vim .env 
+nano .env 
     VITE_API_URL = "http://<BACKEND_PUBLIC_IP>:8080/api"
 ```
 ## Step 4: Build Frontend Docker Image
