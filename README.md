@@ -127,7 +127,7 @@ nano Dockerfile
 ```
 
 Paste the following code:
-
+```
 FROM node:25-alpine3.21
 
 WORKDIR /opt
@@ -140,20 +140,24 @@ RUN cp -rf dist/* /var/www/localhost/htdocs/
 
 EXPOSE 80
 CMD ["httpd", "-D", "FOREGROUND"]
-
+```
 
 ## 🧩 Step 11: Build Frontend Docker Image
+```
 docker build -t frontend:v1 .
+```
 
 ## 🧩 Step 12: Run Frontend Docker Container
+```
 docker run -d -p 80:80 frontend:v1
+```
 
 ## 🧩 Step 13: Check Running Containers
+```
 docker ps
+```
 
 ## ✅ Verification and Testing
-
-Once both containers are running:
 
 Access website:
 Open your browser and go to
