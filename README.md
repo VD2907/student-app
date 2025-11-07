@@ -48,6 +48,8 @@ apt install docker.io -y
 # Install MySQL client
 apt install mysql-client -y
 ```
+---
+
 ## 🧩 Step 2: Clone the GitHub Repository
 Clone your project from GitHub
 ```
@@ -57,7 +59,9 @@ git clone <GitHub_Repository_Link>
 Example:
 git clone https://github.com/username/student-registration.git
 
-### ⚙️ Backend Setup
+---
+
+# ⚙️ Backend Setup
 ## 🧩 Step 3: Navigate to Backend Directory
 ```
 cd <GitHub_Repository_Name>/backend
@@ -68,7 +72,7 @@ cd <GitHub_Repository_Name>/backend
 nano application.properties
 ```
 
-# Edit and Update:
+### Edit and Update:
 
 Replace localhost with your RDS endpoint
 
@@ -83,12 +87,13 @@ spring.datasource.password=yourpassword
 ```
 
 Save and exit using CTRL + S, then ENTER, then CTRL + X.
+---
 
 ## 🧩 Step 5: Create Dockerfile for Backend
 nano Dockerfile
 
 
-# Paste the following code:
+### Paste the following code:
 ```
 FROM maven:3.8.3-openjdk-17
 
@@ -104,19 +109,23 @@ EXPOSE 8080
 
 CMD ["java", "-jar", "student-registration-backend-0.0.1-SNAPSHOT.jar"]
 ```
+
 ## 🧩 Step 6: Build Backend Docker Image
 ```
 docker build -t backend:v1 .
 ```
+
 ## 🧩 Step 7: Run Backend Docker Container
 ```
 docker run -d -p 8080:8080 backend:v1
 ```
+
 ## 🧩 Step 8: Check Running Containers
 ```
 docker ps
 ```
-### 🎨 Frontend Setup
+
+# 🎨 Frontend Setup
 ## 🧩 Step 9: Navigate to Frontend Directory
 ```
 cd <GitHub_Repository_Name>/frontend
@@ -126,7 +135,7 @@ cd <GitHub_Repository_Name>/frontend
 nano Dockerfile
 ```
 
-Paste the following code:
+### Paste the following code:
 ```
 FROM node:25-alpine3.21
 
@@ -156,11 +165,13 @@ docker run -d -p 80:80 frontend:v1
 ```
 docker ps
 ```
+---
 
 ## ✅ Verification and Testing
 
-Access website:
+#### Access website:
 Open your browser and go to
 ```
 http://<EC2-Public-IP>
 ```
+---
