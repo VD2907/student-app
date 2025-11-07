@@ -126,7 +126,6 @@ spring.datasource.password=yourpassword
 ```
 
 ### Save and exit using CTRL + S, then ENTER, then CTRL + X.
----
 
 ## Step 3: Create Dockerfile for Backend
 nano Dockerfile
@@ -163,6 +162,7 @@ docker run -d -p 8080:8080 backend:v1
 ```
 docker ps
 ```
+---
 
 # Frontend Setup
 ## Step 1: Navigate to Frontend Directory
