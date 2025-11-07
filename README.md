@@ -189,18 +189,23 @@ RUN cp -rf dist/* /var/www/localhost/htdocs/
 EXPOSE 80
 CMD ["httpd", "-D", "FOREGROUND"]
 ```
-
-## Step 3: Build Frontend Docker Image
+## step 3: Build the React Application for Production
+Update backend URL in .env file
+```
+vim .env 
+    VITE_API_URL = "http://<BACKEND_PUBLIC_IP>:8080/api"
+```
+## Step 4: Build Frontend Docker Image
 ```
 docker build -t frontend:v1 .
 ```
 
-## Step 4: Run Frontend Docker Container
+## Step 5: Run Frontend Docker Container
 ```
 docker run -d -p 80:80 frontend:v1
 ```
 
-## Step 5: Check Running Containers
+## Step 6: Check Running Containers
 ```
 docker ps
 ```
