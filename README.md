@@ -131,7 +131,7 @@ spring.datasource.password=yourpassword
 nano Dockerfile
 
 
-### Paste the following code:
+### Backend Dockerfile:
 ```
 FROM maven:3.8.3-openjdk-17
 
@@ -174,7 +174,7 @@ cd <GitHub_Repository_Name>/frontend
 nano Dockerfile
 ```
 
-### Paste the following code:
+### Frontend Dockerfile:
 ```
 FROM node:25-alpine3.21
 
